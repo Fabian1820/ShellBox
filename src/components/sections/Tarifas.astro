@@ -1,5 +1,7 @@
 ---
-import { TARIFAS, PAGO, whatsappLink } from '../../lib/config';
+import { TARIFAS, PAGO, COMISION, whatsappLink } from '../../lib/config';
+
+const ej = COMISION.ejemplo;
 
 const cta = whatsappLink('¡Hola ShellBox! Quiero saber cuánto me costaría traer mi encargo.');
 ---
@@ -14,11 +16,12 @@ const cta = whatsappLink('¡Hola ShellBox! Quiero saber cuánto me costaría tra
         Tarifas
       </p>
       <h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-        Precio por libra, sin letra pequeña
+        Dos conceptos, sin letra pequeña
       </h2>
       <p class="mt-5 text-lg" style="color: var(--text-muted)">
-        Clasificamos tu mercancía según sus características físicas y su volumen. Te decimos
-        el costo exacto antes de comprar nada.
+        La tarifa por peso, según cómo se clasifique tu mercancía, más un
+        <strong style="color: var(--text)">{COMISION.porcentaje} % del valor de la compra</strong>.
+        Te decimos el costo exacto antes de comprar nada.
       </p>
     </div>
 
@@ -91,6 +94,70 @@ const cta = whatsappLink('¡Hola ShellBox! Quiero saber cuánto me costaría tra
       }
     </div>
 
+    <!-- La comisión y un ejemplo con números, para que nadie tenga que calcular -->
+    <div class="reveal card mt-6 overflow-hidden">
+      <div class="grid lg:grid-cols-[1fr_auto]">
+        <div class="p-8 sm:p-10">
+          <div class="flex items-baseline gap-3">
+            <span class="text-gradient text-5xl font-extrabold tracking-tight">
+              {COMISION.porcentaje} %
+            </span>
+            <span class="text-lg font-medium" style="color: var(--text-muted)">
+              del valor de la compra
+            </span>
+          </div>
+          <p class="mt-5 max-w-md leading-relaxed" style="color: var(--text-muted)">
+            Se suma a la tarifa por peso y cubre la gestión de la compra. Como todo lo
+            demás, se paga al recibir la mercancía en Cuba, nunca por adelantado.
+          </p>
+        </div>
+
+        <!-- Ejemplo desglosado -->
+        <div
+          class="p-8 sm:p-10 lg:min-w-[20rem]"
+          style="background-color: var(--bg-subtle); border-top: 1px solid var(--border)"
+        >
+          <p
+            class="text-xs font-semibold tracking-[0.18em] uppercase"
+            style="color: var(--text-faint)"
+          >
+            Un ejemplo
+          </p>
+
+          <p class="mt-3 text-sm" style="color: var(--text-muted)">
+            Compra de <strong style="color: var(--text)">{ej.compra} USD</strong> que pesa{' '}
+            <strong style="color: var(--text)">{ej.libras} libras</strong>
+          </p>
+
+          <dl class="mt-5 space-y-2.5 text-sm">
+            <div class="flex items-baseline justify-between gap-4">
+              <dt style="color: var(--text-muted)">
+                Peso ({ej.libras} × {TARIFAS[0].precio} USD)
+              </dt>
+              <dd class="font-semibold tabular-nums">{ej.peso} USD</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <dt style="color: var(--text-muted)">
+                Comisión ({COMISION.porcentaje} % de {ej.compra})
+              </dt>
+              <dd class="font-semibold tabular-nums">{ej.comision} USD</dd>
+            </div>
+
+            <div class="h-px" style="background-color: var(--border)"></div>
+
+            <div class="flex items-baseline justify-between gap-4">
+              <dt class="font-semibold">Total del envío</dt>
+              <dd class="text-gradient text-xl font-extrabold tabular-nums">{ej.total} USD</dd>
+            </div>
+          </dl>
+
+          <p class="mt-4 text-xs" style="color: var(--text-faint)">
+            Sin contar lo que cueste la compra en la tienda.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Condiciones de pago -->
     <div class="reveal card mt-6 p-8 sm:p-10">
       <div class="grid gap-8 sm:grid-cols-3">
@@ -100,7 +167,7 @@ const cta = whatsappLink('¡Hola ShellBox! Quiero saber cuánto me costaría tra
           </h3>
           <p class="mt-3 text-lg font-semibold">{PAGO.momento}</p>
           <p class="mt-1 text-sm" style="color: var(--text-muted)">
-            No adelantas dinero en ningún momento.
+            {PAGO.conceptos}. No adelantas dinero en ningún momento.
           </p>
         </div>
 

@@ -52,7 +52,7 @@ export const PASOS = [
     numero: '02',
     titulo: 'Envíanos el enlace',
     descripcion:
-      'Mándanos por WhatsApp el enlace del producto o el carrito completo y te decimos el costo exacto antes de comprar.',
+      'Mándanos por WhatsApp el enlace del producto o el carrito completo y te decimos el costo exacto antes de comprar: la tarifa por peso más un 5 % del valor de la compra.',
   },
   {
     numero: '03',
@@ -64,7 +64,7 @@ export const PASOS = [
     numero: '04',
     titulo: 'Recoges y pagas en Cuba',
     descripcion:
-      'Te avisamos por WhatsApp cuando llegue. Recoges en Playa, La Habana, y pagas solo cuando tienes tu mercancía en la mano.',
+      'Te avisamos por WhatsApp cuando llegue. Recoges en Playa, La Habana, y pagas todo junto —peso y comisión— cuando tienes tu mercancía en la mano.',
   },
 ] as const;
 
@@ -98,7 +98,7 @@ export const VENTAJAS = [
     icono: 'transparencia',
     titulo: 'Transparencia',
     descripcion:
-      'Te decimos el costo exacto antes de comprar, no cuando la mercancía ya está en Cuba. Sin sorpresas al final.',
+      'Te decimos el costo exacto antes de comprar —peso y comisión incluidos—, no cuando la mercancía ya está en Cuba. Sin sorpresas al final.',
   },
   {
     icono: 'seguridad',
@@ -120,11 +120,37 @@ export const VENTAJAS = [
   },
 ] as const;
 
+/**
+ * Comisión sobre el valor de la compra, que se suma a la tarifa por peso.
+ *
+ * Se cobra junto con el resto al recibir la mercancía en Cuba, no por
+ * adelantado. El ejemplo está aquí y no escrito en cada sección para que las
+ * cifras no se contradigan entre sí si algún día cambia el porcentaje.
+ */
+export const COMISION = {
+  porcentaje: 5,
+  ejemplo: {
+    compra: 100,
+    libras: 5,
+    /** Se calculan a partir de la tarifa de miscelánea, no a mano. */
+    get peso() {
+      return this.libras * TARIFAS[0].precio;
+    },
+    get comision() {
+      return (this.compra * COMISION.porcentaje) / 100;
+    },
+    get total() {
+      return this.peso + this.comision;
+    },
+  },
+} as const;
+
 export const PAGO = {
   momento: 'Al recibir la mercancía en Cuba',
   moneda: 'USD',
   metodos: ['Efectivo', 'Zelle'],
   nota: 'En efectivo solo se aceptan billetes de 20 USD o denominaciones superiores.',
+  conceptos: 'Tarifa por libra + 5 % del valor de la compra',
 } as const;
 
 export const ENTREGA = {
@@ -159,7 +185,7 @@ export const FAQS = [
   {
     pregunta: '¿Cómo sé cuánto me va a costar?',
     respuesta:
-      'Nos envías el enlace del producto o el carrito preparado y te damos el costo antes de que se compre nada. La miscelánea va a 6 USD por libra y la carga o mercancía sobredimensionada a 3 USD por libra.',
+      'Nos envías el enlace del producto o el carrito preparado y te damos el costo antes de que se compre nada. Se cobran dos cosas: la tarifa por peso —6 USD por libra en miscelánea, 3 USD por libra en carga— y un 5 % del valor de la compra. Por ejemplo, una compra de 100 USD que pese 5 libras son 30 USD de peso más 5 USD de comisión: 35 USD en total.',
   },
   {
     pregunta: '¿Cuándo pago?',
