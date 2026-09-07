@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 // Textura opcional de cartón sobre el degradado de marca.
-const textura = '/fotos/textura-carton.jpg';
+const textura = '/fotos/textura-carton.webp';
 const hayTextura = fs.existsSync(path.join(process.cwd(), 'public', textura.replace(/^\//, '')));
 
 const cta = whatsappLink('¡Hola ShellBox! Quiero hacer un encargo desde Estados Unidos.');

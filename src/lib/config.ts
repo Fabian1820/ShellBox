@@ -64,7 +64,7 @@ export const PASOS = [
     numero: '04',
     titulo: 'Recoges y pagas en Cuba',
     descripcion:
-      'Te avisamos por WhatsApp cuando llegue. Recoges en El Vedado, La Habana, y pagas solo cuando tienes tu mercancía en la mano.',
+      'Te avisamos por WhatsApp cuando llegue. Recoges en Playa, La Habana, y pagas solo cuando tienes tu mercancía en la mano.',
   },
 ] as const;
 
@@ -128,27 +128,25 @@ export const PAGO = {
 } as const;
 
 export const ENTREGA = {
-  lugar: 'El Vedado, La Habana',
+  lugar: 'Playa, La Habana',
   plazoRecogida: '7 días hábiles',
   aviso: 'Grupo oficial de WhatsApp',
 
   /**
-   * Punto exacto donde se marca el mapa.
+   * Punto exacto donde se marca el mapa, en el municipio Playa.
    *
-   * PENDIENTE: ahora mismo apunta al centro aproximado del Vedado. Sustituye
-   * `lat` y `lng` por las coordenadas reales del local. Se sacan en
-   * openstreetmap.org o Google Maps: clic derecho sobre el punto → copiar
-   * coordenadas. El orden es latitud primero, longitud después.
+   * Para moverlo: en openstreetmap.org o Google Maps, clic derecho sobre el
+   * punto → copiar coordenadas. Latitud primero, longitud después.
    */
   mapa: {
-    lat: 23.1372,
-    lng: -82.3862,
+    lat: 23.101455,
+    lng: -82.435097,
     /** 16 enseña la manzana; 15 la barriada; 17 el portal. */
     zoom: 16,
     /** Texto del globo que sale al pulsar el marcador. */
     etiqueta: 'ShellBox Encargos · Punto de recogida',
-    /** Precisión del punto. Ponlo en false cuando las coordenadas sean exactas. */
-    aproximado: true,
+    /** Precisión del punto. En false no se muestra el aviso de «aproximada». */
+    aproximado: false,
   },
 } as const;
 
@@ -186,7 +184,7 @@ export const FAQS = [
   {
     pregunta: '¿Dónde recojo mi paquete?',
     respuesta:
-      'En El Vedado, La Habana. Te avisamos por WhatsApp cuando tu mercancía llegue y tienes 7 días hábiles para recogerla.',
+      'En Playa, La Habana. Te avisamos por WhatsApp cuando tu mercancía llegue y tienes 7 días hábiles para recogerla.',
   },
   {
     pregunta: '¿Qué pasa si el producto llega defectuoso o equivocado?',

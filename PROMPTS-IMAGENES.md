@@ -38,7 +38,7 @@ recognizable faces, no clutter, no harsh flash, no oversaturated colors.
 
 ---
 
-## 1. Fondo del hero — `hero-cajas.jpg`
+## 1. Fondo del hero — `hero-cajas.webp`
 
 Va al **14% de opacidad** detrás del titular, así que tiene que ser muy simple: si
 lleva mucho detalle, ensucia la lectura del texto.
@@ -51,7 +51,7 @@ Wide empty space across the upper left half of the image. Very calm, minimal and
 airy, few objects, lots of breathing room. --ar 3:2 --style raw
 ```
 
-## 2. Banda ancha — `entrega-vedado.jpg`
+## 2. Banda ancha — `entrega-playa.webp`
 
 Lleva un velo oscuro encima y el texto va a la **izquierda**. Por eso el prompt pide
 que el motivo quede a la derecha: si sale centrado, el título se le monta encima.
@@ -65,7 +65,7 @@ over, cinematic warm grading, terracotta and amber tones. Faces not visible.
 --ar 16:9 --style raw
 ```
 
-## 3. Textura del cierre — `textura-carton.jpg`
+## 3. Textura del cierre — `textura-carton.webp`
 
 Se superpone al degradado de marca en modo *overlay* al 25%. Tiene que ser **plana
 y sin ningún punto de atención**: solo material y grano.
@@ -110,13 +110,19 @@ marca y no se rompe nada.
 
 | Archivo | Dónde sale |
 | :------ | :--------- |
-| `hero-cajas.jpg` | Fondo del hero, al 14% de opacidad |
-| `entrega-vedado.jpg` | Banda ancha entre «Cómo funciona» y «Ventajas» |
-| `textura-carton.jpg` | Textura sobre el degradado del cierre |
+| `hero-cajas.webp` | Fondo del hero, al 14% de opacidad |
+| `entrega-playa.webp` | Banda ancha entre «Cómo funciona» y «Ventajas» |
+| `textura-carton.webp` | Textura sobre el degradado del cierre |
 
-Antes de subirlas, pásalas a **WebP con calidad 80**: pesan la mitad que un JPEG y
-se ven igual. Si la generas en JPEG, renómbrala igualmente a `.jpg` como está en la
-tabla, o dime y cambio la extensión en el código.
+Genera en el formato que quieras (PNG, JPEG…) y déjalas en esa carpeta: yo las
+convierto a WebP y las optimizo antes de subirlas. Las tres actuales pasaron de
+6,7 MB en PNG a 191 KB en WebP, sin diferencia visible.
+
+Si prefieres hacerlo tú, el comando es:
+
+```bash
+cwebp -q 82 -m 6 foto.png -o foto.webp
+```
 
 ---
 

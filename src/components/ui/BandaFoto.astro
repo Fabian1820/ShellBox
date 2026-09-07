@@ -10,7 +10,7 @@ import path from 'node:path';
  * fotos sin que quede un hueco roto.
  */
 interface Props {
-  /** Ruta pública de la imagen, p. ej. `/fotos/entrega.jpg`. */
+  /** Ruta pública de la imagen, p. ej. `/fotos/entrega-playa.webp`. */
   src: string;
   /** Texto alternativo. Cadena vacía si la foto es puramente decorativa. */
   alt?: string;
@@ -26,8 +26,13 @@ const existe = fs.existsSync(path.join(process.cwd(), 'public', src.replace(/^\/
 ---
 
 <section class="relative overflow-hidden">
+  {/* El degradado de marca va SIEMPRE debajo, no como alternativa: si la foto
+      falta, tarda o falla, el texto blanco sigue teniendo un fondo oscuro
+      detrás. Con la foto cargada queda tapado por completo. */}
+  <div class="bg-gradient-brand absolute inset-0" aria-hidden="true"></div>
+
   {
-    existe ? (
+    existe && (
       <img
         src={src}
         alt={alt}
@@ -35,9 +40,6 @@ const existe = fs.existsSync(path.join(process.cwd(), 'public', src.replace(/^\/
         loading="lazy"
         decoding="async"
       />
-    ) : (
-      /* Sin foto todavía: degradado de marca como sustituto digno. */
-      <div class="bg-gradient-brand absolute inset-0" aria-hidden="true" />
     )
   }
 

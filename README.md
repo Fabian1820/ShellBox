@@ -17,7 +17,7 @@ la web entera se actualiza sola.
 | Miscelánea | 6 USD / libra — entrega de 5 a 7 días |
 | Carga y sobredimensionado | 3 USD / libra — entrega de 40 a 45 días |
 | Pago | En USD, al recibir la mercancía en Cuba (efectivo desde 20 USD, o Zelle) |
-| Recogida | El Vedado, La Habana — 7 días hábiles de plazo |
+| Recogida | Playa, La Habana — 7 días hábiles de plazo |
 
 Los términos y condiciones completos se publican en `/terminos`.
 

@@ -6,7 +6,7 @@ import path from 'node:path';
 
 // Foto ambiental opcional detrás del texto. Si el archivo no está, el hero se
 // queda solo con la aurora de color, que ya funciona por sí sola.
-const fotoFondo = '/fotos/hero-cajas.jpg';
+const fotoFondo = '/fotos/hero-cajas.webp';
 const hayFoto = fs.existsSync(path.join(process.cwd(), 'public', fotoFondo.replace(/^\//, '')));
 
 const miscelanea = TARIFAS.find((t) => t.id === 'miscelanea')!;
@@ -226,7 +226,7 @@ const sellos = [
                 🇨🇺
               </div>
               <p class="text-sm font-semibold">Cuba</p>
-              <p class="text-xs" style="color: var(--text-faint)">Recoges en El Vedado</p>
+              <p class="text-xs" style="color: var(--text-faint)">Recoges en Playa</p>
             </div>
           </div>
 
